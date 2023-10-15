@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Okt 15. 17:47
+-- Létrehozás ideje: 2023. Okt 15. 20:37
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.12
 
@@ -26,12 +26,29 @@ USE `nagyi_receptjei`;
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `recipe_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content` varchar(250) COLLATE utf8_hungarian_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `recipe_id__recipes_id` (`recipe_id`),
+  KEY `user_id__users_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `recipes`
 --
 
+DROP TABLE IF EXISTS `recipes`;
 CREATE TABLE IF NOT EXISTS `recipes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
   `title` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `category` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
   `ingredients` varchar(500) COLLATE utf8_hungarian_ci NOT NULL,
@@ -39,8 +56,7 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `prep_time` int(11) NOT NULL,
   `portion` int(11) NOT NULL,
   `image` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id__users_id` (`user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
@@ -49,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `recipes` (
 -- Tábla szerkezet ehhez a táblához `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
@@ -63,9 +80,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 --
--- Megkötések a táblához `recipes`
+-- Megkötések a táblához `comments`
 --
-ALTER TABLE `recipes`
+ALTER TABLE `comments`
+  ADD CONSTRAINT `recipe_id__recipes_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`),
   ADD CONSTRAINT `user_id__users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
