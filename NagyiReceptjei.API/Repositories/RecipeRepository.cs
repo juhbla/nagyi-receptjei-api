@@ -16,6 +16,7 @@ public class RecipeRepository
     {
         return _context.Recipes
             .Include(recipe => recipe.Comments)
+            .ThenInclude(recipe => recipe.User)
             .ToList();
     }
 
@@ -23,6 +24,7 @@ public class RecipeRepository
     {
         return _context.Recipes
             .Include(recipe => recipe.Comments)
+            .ThenInclude(recipe => recipe.User)
             .SingleOrDefault(recipe => recipe.Id == id);
     }
 

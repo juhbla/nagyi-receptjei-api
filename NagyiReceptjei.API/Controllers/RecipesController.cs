@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NagyiReceptjei.API.Models;
 using NagyiReceptjei.API.Repositories;
+using NagyiReceptjei.API.Resources;
 
 namespace NagyiReceptjei.API.Controllers;
 
@@ -9,17 +11,24 @@ namespace NagyiReceptjei.API.Controllers;
 public class RecipesController
 {
     private readonly RecipeRepository _recipeRepository;
+    private readonly IMapper _mapper;
 
-    public RecipesController(RecipeRepository recipeRepository)
+    public RecipesController(
+        RecipeRepository recipeRepository,
+        IMapper mapper
+    )
     {
         _recipeRepository = recipeRepository;
+        _mapper = mapper;
     }
 
     // GET: api/recipes
     [HttpGet]
     public IResult GetRecipes()
     {
-        return Results.Ok(_recipeRepository.GetRecipes());
+        var recipes = _recipeRepository.GetRecipes();
+        var recipesResponses = _mapper.Map<IEnumerable<Recipe>, IEnumerable<GetRecipeResponse>>(recipes);
+        return Results.Ok(recipesResponses);
     }
 
     // POST: api/recipes
