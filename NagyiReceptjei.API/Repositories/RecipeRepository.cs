@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using NagyiReceptjei.API.Models;
 
 namespace NagyiReceptjei.API.Repositories;
@@ -13,12 +14,16 @@ public class RecipeRepository
 
     public IEnumerable<Recipe> GetRecipes()
     {
-        return _context.Recipes.ToList();
+        return _context.Recipes
+            .Include(recipe => recipe.Comments)
+            .ToList();
     }
 
     private Recipe GetRecipe(int id)
     {
-        return _context.Recipes.SingleOrDefault(recipe => recipe.Id == id);
+        return _context.Recipes
+            .Include(recipe => recipe.Comments)
+            .SingleOrDefault(recipe => recipe.Id == id);
     }
 
     public Recipe Add(Recipe recipe)
