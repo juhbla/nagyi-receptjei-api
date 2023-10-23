@@ -19,5 +19,11 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Recipe>()
             .Property(recipe => recipe.PrepTime)
             .HasColumnName("prep_time");
+        modelBuilder.Entity<Comment>()
+            .Property(comment => comment.RecipeId)
+            .HasColumnName("recipe_id");
+        modelBuilder.Entity<Comment>()
+            .Property(comment => comment.UserId)
+            .HasColumnName("user_id");
     }
 }
