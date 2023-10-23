@@ -26,7 +26,7 @@ public class RecipesController
     [HttpPost]
     public IResult CreateRecipe([FromBody] Recipe request)
     {
-        return null;
+        return Results.Ok(_recipeRepository.Add(request));
     }
 
     // PUT: api/recipes/id

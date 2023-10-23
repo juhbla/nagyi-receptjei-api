@@ -15,4 +15,11 @@ public class RecipeRepository
     {
         return _context.Recipes.ToList();
     }
+
+    public Recipe Add(Recipe recipe)
+    {
+        var newRecipe = _context.Recipes.Add(recipe);
+        _context.SaveChanges();
+        return newRecipe.Entity;
+    }
 }
