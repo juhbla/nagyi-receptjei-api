@@ -19,7 +19,7 @@ public class RecipesController
     [HttpGet]
     public IResult GetRecipes()
     {
-        return null;
+        return Results.Ok(_recipeRepository.GetRecipes());
     }
 
     // POST: api/recipes
