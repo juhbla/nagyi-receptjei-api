@@ -16,10 +16,23 @@ public class RecipeRepository
         return _context.Recipes.ToList();
     }
 
+    private Recipe GetRecipe(int id)
+    {
+        return _context.Recipes.SingleOrDefault(recipe => recipe.Id == id);
+    }
+
     public Recipe Add(Recipe recipe)
     {
-        var newRecipe = _context.Recipes.Add(recipe);
+        var newRecipe = _context.Recipes.Add(recipe).Entity;
         _context.SaveChanges();
-        return newRecipe.Entity;
+        return newRecipe;
+    }
+
+    public Recipe DeleteRecipe(int id)
+    {
+        var recipeToDelete = GetRecipe(id);
+        var removedRecipe = _context.Recipes.Remove(recipeToDelete).Entity;
+        _context.SaveChanges();
+        return removedRecipe;
     }
 }

@@ -40,6 +40,6 @@ public class RecipesController
     [HttpDelete("{id:int}")]
     public IResult DeleteRecipe(int id)
     {
-        return null;
+        return Results.Ok(_recipeRepository.DeleteRecipe(id));
     }
 }
