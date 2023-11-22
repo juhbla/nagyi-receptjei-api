@@ -8,6 +8,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Recipe> Recipes { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<Ingredient> Ingredients { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions)
         : base(contextOptions)
