@@ -33,8 +33,11 @@ public class RecipesController
 
     // POST: api/recipes
     [HttpPost]
-    public IResult CreateRecipe([FromBody] Recipe request)
+    public IResult CreateRecipe([FromBody] CreateRecipeRequest request)
     {
-        return Results.Ok(_recipeRepository.Add(request));
+        var recipe = _mapper.Map<CreateRecipeRequest, Recipe>(request);
+        var newRecipe = _recipeRepository.Add(recipe);
+        var recipeResponse = _mapper.Map<Recipe, GetRecipeResponse>(newRecipe);
+        return Results.Ok(recipeResponse);
     }
 }

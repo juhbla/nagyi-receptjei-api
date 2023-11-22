@@ -15,5 +15,7 @@ public class MappingProfile : Profile
         CreateMap<Ingredient, GetIngredientResponse>();
 
         // Request resource to model
+        CreateMap<CreateIngredientRequest, Ingredient>();
+        CreateMap<CreateRecipeRequest, Recipe>();
     }
 }
