@@ -11,6 +11,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<RecipeRepository>();
+builder.Services.AddScoped<CommentRepository>();
 
 builder.Services.AddControllers();
 
