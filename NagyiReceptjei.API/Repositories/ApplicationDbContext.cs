@@ -25,5 +25,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Comment>()
             .Property(comment => comment.UserId)
             .HasColumnName("user_id");
+        modelBuilder.Entity<Ingredient>()
+            .Property(ingredient => ingredient.RecipeId)
+            .HasColumnName("recipe_id");
     }
 }
