@@ -19,5 +19,6 @@ public class MappingProfile : Profile
         CreateMap<CreateIngredientRequest, Ingredient>();
         CreateMap<CreateRecipeRequest, Recipe>();
         CreateMap<CreateCommentRequest, Comment>();
+        CreateMap<CreateUserRequest, User>();
     }
 }
