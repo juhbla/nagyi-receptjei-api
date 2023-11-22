@@ -37,18 +37,4 @@ public class RecipesController
     {
         return Results.Ok(_recipeRepository.Add(request));
     }
-
-    // PUT: api/recipes/id
-    [HttpPut("{id:int}")]
-    public IResult UpdateRecipe(int id, [FromBody] Recipe request)
-    {
-        return null;
-    }
-
-    // DELETE: api/recipes/1
-    [HttpDelete("{id:int}")]
-    public IResult DeleteRecipe(int id)
-    {
-        return Results.Ok(_recipeRepository.DeleteRecipe(id));
-    }
 }
