@@ -1,4 +1,4 @@
-namespace NagyiReceptjei.API.Resources;
+namespace NagyiReceptjei.API.Resources.Requests;
 
 public class CreateIngredientRequest
 {
