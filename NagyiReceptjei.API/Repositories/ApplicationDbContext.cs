@@ -13,4 +13,17 @@ public class ApplicationDbContext : DbContext
         : base(contextOptions)
     {
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Recipe>()
+            .Property(recipe => recipe.PrepTime)
+            .HasColumnName("prep_time");
+        modelBuilder.Entity<Comment>()
+            .Property(comment => comment.RecipeId)
+            .HasColumnName("recipe_id");
+        modelBuilder.Entity<Comment>()
+            .Property(comment => comment.UserId)
+            .HasColumnName("user_id");
+    }
 }
