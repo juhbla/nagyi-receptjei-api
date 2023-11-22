@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NagyiReceptjei.API.Exceptions;
 using NagyiReceptjei.API.Models;
 using NagyiReceptjei.API.Repositories;
 using NagyiReceptjei.API.Resources.Requests;
@@ -27,14 +28,21 @@ public class UsersController
     [HttpPost]
     public IResult RegisterUser([FromBody] CreateUserRequest request)
     {
-        if (request.Password != request.ConfirmPassword)
+        try
+        {
+            if (request.Password != request.ConfirmPassword)
+            {
+                throw new PasswordConfirmationException();
+            }
+
+            var user = _mapper.Map<CreateUserRequest, User>(request);
+            var newUser = _userRepository.Add(user);
+            var userResponse = _mapper.Map<User, GetUserResponse>(newUser);
+            return Results.Ok(userResponse);
+        }
+        catch
         {
             return Results.BadRequest();
         }
-
-        var user = _mapper.Map<CreateUserRequest, User>(request);
-        var newUser = _userRepository.Add(user);
-        var userResponse = _mapper.Map<User, GetUserResponse>(newUser);
-        return Results.Ok(userResponse);
     }
 }
