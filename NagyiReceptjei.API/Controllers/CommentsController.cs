@@ -37,6 +37,7 @@ public class CommentsController
     [HttpDelete("{id:int}")]
     public IResult DeleteComment(int id)
     {
-        return null;
+        _commentRepository.DeleteComment(id);
+        return Results.Ok();
     }
 }

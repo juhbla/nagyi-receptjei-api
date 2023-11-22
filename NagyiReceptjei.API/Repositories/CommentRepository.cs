@@ -26,4 +26,11 @@ public class CommentRepository
         _context.SaveChanges();
         return newComment;
     }
+
+    public void DeleteComment(int id)
+    {
+        var commentToDelete = GetCommentById(id);
+        _context.Comments.Remove(commentToDelete);
+        _context.SaveChanges();
+    }
 }
