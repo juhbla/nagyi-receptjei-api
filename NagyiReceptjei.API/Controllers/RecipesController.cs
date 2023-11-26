@@ -42,11 +42,12 @@ public class RecipesController
         {
             var recipe = _recipeRepository.GetRecipe(id);
             var recipeResponse = _mapper.Map<Recipe, GetRecipeResponse>(recipe);
+
             return Results.Ok(recipeResponse);
         }
         catch (Exception exception)
         {
-            return Results.BadRequest(exception.Message);
+            return Results.BadRequest($"Recipe with id: {id} is not found.");
         }
     }
 
