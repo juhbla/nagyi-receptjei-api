@@ -15,19 +15,19 @@ public class RecipeRepository
     public IEnumerable<Recipe> GetRecipes()
     {
         return _context.Recipes
-            .Include(recipe => recipe.Photo)
-            .Include(recipe => recipe.Ingredients)
             .Include(recipe => recipe.Comments)
             .ThenInclude(comment => comment.User)
+            .Include(recipe => recipe.Ingredients)
+            .Include(recipe => recipe.Photo)
             .ToList();
     }
 
     public Recipe GetRecipe(int id)
     {
         return _context.Recipes
-            .Include(recipe => recipe.Ingredients)
             .Include(recipe => recipe.Comments)
             .ThenInclude(comment => comment.User)
+            .Include(recipe => recipe.Ingredients)
             .Include(recipe => recipe.Photo)
             .Where(comment => comment.Id == id)
             .SingleOrDefault();

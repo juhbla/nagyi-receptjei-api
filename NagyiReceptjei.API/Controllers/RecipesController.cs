@@ -34,6 +34,22 @@ public class RecipesController
         return Results.Ok(recipesResponses);
     }
 
+    // GET: api/recipes/1
+    [HttpGet("{id:int}")]
+    public IResult GetRecipe(int id)
+    {
+        try
+        {
+            var recipe = _recipeRepository.GetRecipe(id);
+            var recipeResponse = _mapper.Map<Recipe, GetRecipeResponse>(recipe);
+            return Results.Ok(recipeResponse);
+        }
+        catch (Exception exception)
+        {
+            return Results.BadRequest(exception.Message);
+        }
+    }
+
     // POST: api/recipes
     [HttpPost]
     public IResult CreateRecipe([FromBody] CreateRecipeRequest request)
