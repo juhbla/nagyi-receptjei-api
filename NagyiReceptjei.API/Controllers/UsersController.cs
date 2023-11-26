@@ -1,10 +1,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using NagyiReceptjei.API.Exceptions;
+using NagyiReceptjei.API.Controllers.Resources.Requests;
+using NagyiReceptjei.API.Controllers.Resources.Responses;
 using NagyiReceptjei.API.Models;
 using NagyiReceptjei.API.Repositories;
-using NagyiReceptjei.API.Resources.Requests;
-using NagyiReceptjei.API.Resources.Responses;
+using NagyiReceptjei.API.Utilities.Exceptions;
 
 namespace NagyiReceptjei.API.Controllers;
 

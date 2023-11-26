@@ -12,7 +12,7 @@ public class CommentRepository
         _context = context;
     }
 
-    public Comment GetCommentById(int id)
+    public Comment GetComment(int id)
     {
         return _context.Comments
             .Include(comment => comment.User)
@@ -29,7 +29,7 @@ public class CommentRepository
 
     public void DeleteComment(int id)
     {
-        var commentToDelete = GetCommentById(id);
+        var commentToDelete = GetComment(id);
         _context.Comments.Remove(commentToDelete);
         _context.SaveChanges();
     }

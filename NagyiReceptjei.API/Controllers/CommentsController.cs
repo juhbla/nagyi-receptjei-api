@@ -1,9 +1,9 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NagyiReceptjei.API.Controllers.Resources.Requests;
+using NagyiReceptjei.API.Controllers.Resources.Responses;
 using NagyiReceptjei.API.Models;
 using NagyiReceptjei.API.Repositories;
-using NagyiReceptjei.API.Resources.Requests;
-using NagyiReceptjei.API.Resources.Responses;
 
 namespace NagyiReceptjei.API.Controllers;
 
@@ -29,7 +29,7 @@ public class CommentsController
     {
         var comment = _mapper.Map<CreateCommentRequest, Comment>(request);
         var newComment = _commentRepository.Add(comment);
-        var commentById = _commentRepository.GetCommentById(newComment.Id);
+        var commentById = _commentRepository.GetComment(newComment.Id);
         var commentResponse = _mapper.Map<Comment, GetCommentResponse>(commentById);
         return Results.Ok(commentResponse);
     }

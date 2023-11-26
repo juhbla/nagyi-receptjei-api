@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using NagyiReceptjei.API.Models;
 using NagyiReceptjei.API.Repositories;
+using NagyiReceptjei.API.Utilities;
+using NagyiReceptjei.API.Utilities.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,10 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<RecipeRepository>();
 builder.Services.AddScoped<CommentRepository>();
 builder.Services.AddScoped<UserRepository>();
+
+builder.Services.AddScoped<IFileUtils, FileSystemUtils>();
+builder.Services.AddScoped<IFileValidator, FileValidator>();
+builder.Services.AddScoped<PhotoService<IFormFile, Photo>, RecipePhotoService>();
 
 builder.Services.AddControllers();
 
