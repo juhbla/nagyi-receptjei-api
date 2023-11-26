@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using NagyiReceptjei.API.Controllers.Resources.Responses;
 using NagyiReceptjei.API.Models;
@@ -8,6 +9,7 @@ using NagyiReceptjei.API.Utilities.Exceptions;
 namespace NagyiReceptjei.API.Controllers;
 
 [ApiController]
+[EnableCors("DefaultCorsPolicy")]
 [Route("api/[controller]/")]
 public class PhotosController : ControllerBase
 {
@@ -47,18 +49,18 @@ public class PhotosController : ControllerBase
         }
     }
 
-    [HttpPost("{productId:int}")]
-    public async Task<IActionResult> UploadPhoto(int productId, IFormFile photoToUpload)
+    [HttpPost("{recipeId:int}")]
+    public async Task<IActionResult> UploadPhoto(int recipeId, IFormFile photoToUpload)
     {
         try
         {
-            var uploadedProductPhoto = await _photoService.UploadPhoto(
+            var uploadedPhoto = await _photoService.UploadPhoto(
                 _hostEnvironment.ContentRootPath,
                 photoToUpload,
-                productId
+                recipeId
             );
 
-            var response = _mapper.Map<Photo, GetPhotoResponse>(uploadedProductPhoto);
+            var response = _mapper.Map<Photo, GetPhotoResponse>(uploadedPhoto);
 
             return Ok(response);
         }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using NagyiReceptjei.API.Controllers.Resources.Requests;
 using NagyiReceptjei.API.Controllers.Resources.Responses;
@@ -9,6 +10,7 @@ using NagyiReceptjei.API.Utilities.Exceptions;
 namespace NagyiReceptjei.API.Controllers;
 
 [ApiController]
+[EnableCors("DefaultCorsPolicy")]
 [Route("api/[controller]/")]
 public class UsersController
 {
