@@ -31,7 +31,7 @@ INSERT INTO `users` (`id`, `email`, `username`, `password`) VALUES
 (1, 'juhasz.adel@gmail.com', 'jadel', '12345'),
 (2, 'juhasz.blanka@gmail.com', 'jblanka', '12345');
 
-INSERT INTO `comments` (`id`, `recipe_id`, `user_id`, `content`, `created_datetime`) VALUES
+INSERT INTO `comments` (`id`, `recipe_id`, `user_id`, `content`, `created_date_time`) VALUES
 (1, 1, 1, 'Nagyon jó kis recept !!!', '2023-10-12 14:19:06'),
 (2, 1, 2, 'Ízletes, bár én sokkal több porcukrot raktam bele', '2023-11-11 11:11:11'),
 (3, 2, 1, 'Imádom!', '2023-11-20 11:11:11'),
