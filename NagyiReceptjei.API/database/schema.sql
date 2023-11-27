@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `recipe_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `content` varchar(250) NOT NULL,
+  `content` varchar(250) COLLATE utf8_hungarian_ci NOT NULL,
+  `created_datetime` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `recipe_id__recipes_id` (`recipe_id`),
   KEY `user_id__users_id` (`user_id`)
@@ -20,9 +21,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
 DROP TABLE IF EXISTS `ingredients`;
 CREATE TABLE IF NOT EXISTS `ingredients` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(25) NOT NULL,
+  `name` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
   `amount` int(11) NOT NULL,
-  `unit` varchar(25) NOT NULL,
+  `unit` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
   `recipe_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `recipe_id___recipes_id` (`recipe_id`)
@@ -31,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
 DROP TABLE IF EXISTS `photos`;
 CREATE TABLE IF NOT EXISTS `photos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `file_name` varchar(41) NOT NULL,
+  `file_name` varchar(41) COLLATE utf8_hungarian_ci NOT NULL,
   `recipe_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `recipe___id_recipes___id` (`recipe_id`)
@@ -40,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `photos` (
 DROP TABLE IF EXISTS `recipes`;
 CREATE TABLE IF NOT EXISTS `recipes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL,
-  `content` varchar(2000) NOT NULL,
+  `title` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `content` varchar(2000) COLLATE utf8_hungarian_ci NOT NULL,
   `prep_time` int(11) NOT NULL,
   `portion` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -50,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `recipes` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(50) NOT NULL,
-  `username` varchar(10) NOT NULL,
-  `password` varchar(10) NOT NULL,
+  `email` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
+  `username` varchar(10) COLLATE utf8_hungarian_ci NOT NULL,
+  `password` varchar(10) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
