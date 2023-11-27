@@ -24,6 +24,9 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Comment>()
             .Property(comment => comment.UserId)
             .HasColumnName("user_id");
+        modelBuilder.Entity<Comment>()
+            .Property(comment => comment.CreatedDateTime)
+            .HasColumnName("created_date_time");
         modelBuilder.Entity<Photo>()
             .Property(photo => photo.FileName)
             .HasColumnName("file_name");
