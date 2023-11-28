@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `recipe_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `content` varchar(250) COLLATE utf8_hungarian_ci NOT NULL,
-  `created_date_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_date_time` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `recipe_id__recipes_id` (`recipe_id`),
   KEY `user_id__users_id` (`user_id`)
