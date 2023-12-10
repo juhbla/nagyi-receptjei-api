@@ -41,13 +41,19 @@ public class RecipesController
         try
         {
             var recipe = _recipeRepository.GetRecipe(id);
+            
+            if (recipe == null)
+            {
+                throw new Exception($"Recipe with id: {id} is not found.");
+            }
+
             var recipeResponse = _mapper.Map<Recipe, GetRecipeResponse>(recipe);
 
             return Results.Ok(recipeResponse);
         }
         catch (Exception exception)
         {
-            return Results.BadRequest($"Recipe with id: {id} is not found.");
+            return Results.BadRequest(exception.Message);
         }
     }
 

@@ -26,6 +26,29 @@ public class UsersController
         _mapper = mapper;
     }
 
+    // GET: api/users
+    [HttpGet]
+    public IResult AuthenticateUser([FromQuery] AuthenticationRequest request)
+    {
+        try
+        {
+            var user = _userRepository.GetUser(request.Username, request.Password);
+
+            if (user == null)
+            {
+                throw new Exception($"Invalid username or password.");
+            }
+
+            var userResponse = _mapper.Map<User, GetUserResponse>(user);
+
+            return Results.Ok(userResponse);
+        }
+        catch (Exception exception)
+        {
+            return Results.BadRequest(exception.Message);
+        }
+    }
+
     // POST: api/users
     [HttpPost]
     public IResult RegisterUser([FromBody] CreateUserRequest request)

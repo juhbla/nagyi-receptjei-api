@@ -28,12 +28,13 @@ INSERT INTO `ingredients` (`id`, `name`, `amount`, `unit`, `recipe_id`) VALUES
 (22, 'só', 1, 'csipet', 3);
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`) VALUES
-(1, 'juhasz.adel@gmail.com', 'jadel', '12345'),
-(2, 'juhasz.blanka@gmail.com', 'jblanka', '12345');
+(1, 'nagyi@gmail.com', 'nagyi', '12345'),
+(2, 'juhasz.adel@gmail.com', 'jadel', '12345'),
+(3, 'juhasz.blanka@gmail.com', 'jblanka', '12345');
 
 INSERT INTO `comments` (`id`, `recipe_id`, `user_id`, `content`, `created_date_time`) VALUES
-(1, 1, 1, 'Nagyon jó kis recept !!!', '2023-10-12 14:19:06'),
-(2, 1, 2, 'Ízletes, bár én sokkal több porcukrot raktam bele', '2023-11-11 11:11:11'),
-(3, 2, 1, 'Imádom!', '2023-11-20 11:11:11'),
-(4, 2, 2, 'Nagyon jó!', '2023-11-23 18:02:04'),
-(5, 3, 2, 'Élvezettel főzöm, jó recept! :)', '2023-11-27 07:00:23');
+(1, 1, 2, 'Nagyon jó kis recept !!!', '2023-10-12 14:19:06'),
+(2, 1, 3, 'Ízletes, bár én sokkal több porcukrot raktam bele', '2023-11-11 11:11:11'),
+(3, 2, 2, 'Imádom!', '2023-11-20 11:11:11'),
+(4, 2, 3, 'Nagyon jó!', '2023-11-23 18:02:04'),
+(5, 3, 3, 'Élvezettel főzöm, jó recept! :)', '2023-11-27 07:00:23');

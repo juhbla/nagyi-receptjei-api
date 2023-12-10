@@ -29,8 +29,7 @@ public class RecipeRepository
             .ThenInclude(comment => comment.User)
             .Include(recipe => recipe.Ingredients)
             .Include(recipe => recipe.Photo)
-            .Where(recipe => recipe.Id == id)
-            .Single();
+            .SingleOrDefault(recipe => recipe.Id == id);
     }
 
     public Recipe Add(Recipe recipe)

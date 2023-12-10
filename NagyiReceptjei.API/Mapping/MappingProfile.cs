@@ -1,7 +1,7 @@
 using AutoMapper;
+using NagyiReceptjei.API.Controllers.Resources.Requests;
+using NagyiReceptjei.API.Controllers.Resources.Responses;
 using NagyiReceptjei.API.Models;
-using NagyiReceptjei.API.Resources.Requests;
-using NagyiReceptjei.API.Resources.Responses;
 
 namespace NagyiReceptjei.API.Mapping;
 
